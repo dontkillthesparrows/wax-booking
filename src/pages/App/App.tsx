@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
+import PublicRoute from '../PublicRoute';
 import LandingPage from '../LandingPage';
 import Booking from '../Booking';
 import Menu from '../Menu';
@@ -16,12 +12,11 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" render={() => <Redirect to="/home" />} />
-        <Route exact path="/home" component={LandingPage} />
-        <Route exact path="/booking" component={Booking} />
-        <Route exact path="/menu" component={Menu} />
-        <Route exact path="/offers" component={Offers} />
-        <Route exact path="/about" component={About} />
+        <PublicRoute exact path="/home" component={LandingPage} />
+        <PublicRoute exact path="/booking" component={Booking} />
+        <PublicRoute exact path="/menu" component={Menu} />
+        <PublicRoute exact path="/offers" component={Offers} />
+        <PublicRoute exact path="/about" component={About} />
       </Switch>
     </Router>
   );
