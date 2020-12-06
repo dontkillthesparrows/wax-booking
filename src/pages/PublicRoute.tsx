@@ -1,5 +1,11 @@
 import React, { Fragment } from 'react';
-import { Route, RouteProps, RouteComponentProps } from 'react-router-dom';
+import {
+  Route,
+  RouteProps,
+  RouteComponentProps,
+  Redirect,
+} from 'react-router-dom';
+import ErrorBoundary from '../components/ErrorBoundary';
 import Header from '../components/Header';
 
 interface PublicRouteProps extends RouteProps {
@@ -16,8 +22,12 @@ const PublicRoute = ({
   const render = (props: RouteComponentProps) => {
     return (
       <Fragment>
-        <Header />
-        <Component {...props} />
+        <ErrorBoundary fallback={HeaderFallback}>
+          <Header />
+        </ErrorBoundary>
+        <ErrorBoundary fallback={GenericFallback}>
+          <Component {...props} />
+        </ErrorBoundary>
       </Fragment>
     );
   };
@@ -26,3 +36,11 @@ const PublicRoute = ({
 };
 
 export default PublicRoute;
+
+const GenericFallback = () => {
+  return <h1>something went wrong</h1>;
+};
+
+const HeaderFallback = () => {
+  return <Redirect to="/404" />;
+};
