@@ -6,8 +6,9 @@ const InnerHeader = styled.header`
   display: flex;
   align-items: center;
   height: 100px;
-  margin: 30px 50px 0 0;
-  border-radius: 0 10% 10% 0 / 80%;
+  width: 90%;
+  margin: 30px 0 0 0;
+  border-radius: 0 50px 50px 0 / 50%;
   background-color: var(--brand-color-darker);
   box-shadow: -10px 10px 30px 0 var(--brand-color-darkest),
     10px -10px 30px 0 var(--brand-color-dark);
